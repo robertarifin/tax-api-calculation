@@ -1,6 +1,18 @@
+/**
+ * Collection of functions that are used to create tax object and generate bill for logged user
+ * 
+ * @author Robert Arifin <arifinrobert2013@gmail.com>
+ */
 const { Tax } = require('../models/index.js');
 
 module.exports = {
+  /**
+   * Function that will return a json object of the created tax object and info if all the parameters are filled
+   * It also save the created tax object in DB
+   * 
+   * @param {*} req 
+   * @param {*} res 
+   */
   createTax: (req, res) => {
     Tax.create({
       name: req.body.name,
@@ -37,6 +49,13 @@ module.exports = {
       })
   },
 
+  /**
+   * Function that will generate bill for logged in user
+   * It will return json object that contain bill of the user and info 
+   * 
+   * @param {*} req 
+   * @param {*} res 
+   */
   getUserBill: (req, res) => {
     Tax.findAll({
       where: {

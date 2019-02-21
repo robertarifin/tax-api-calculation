@@ -1,3 +1,9 @@
+/**
+ * Helper function that is used to delete tax object
+ * 
+ * @author Robert Arifin <arifinrobert2013@gmail.com>
+ */
+
 const { Tax } = require('../models/index.js');
 
 module.exports = {

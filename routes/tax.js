@@ -1,3 +1,8 @@
+/**
+ * API Routes to create tax object and get bill from logged in user
+ * 
+ * @author Robert Arifin <arifinrobert2013@gmail.com>
+ */
 const express = require('express');
 const router = express.Router();
 const taxController = require('../controllers/taxController.js');

@@ -1,8 +1,20 @@
+/**
+ * Functions to create user and generate token if user successfully login
+ * 
+ * @author Robert Arifin<arifinrobert2013@gmail.com>
+ */
+
 const { User } = require('../models/index.js');
 const password = require('../helpers/password.js');
 const jwt = require('../helpers/token.js');
 
-module.exports= {
+module.exports = {
+  /**
+   * Sign up function that will return json object of the created user and info
+   * 
+   * @param {*} req 
+   * @param {*} res 
+   */
   signUp(req,res) {
     let data = {
       name: req.body.name,
@@ -40,6 +52,12 @@ module.exports= {
       })
   },
 
+  /**
+   * Sign In function that return  object that contain authorization token and info when user successfully login
+   * 
+   * @param {*} req 
+   * @param {*} res 
+   */
   signIn(req, res) {
     User.findOne({
       where: {

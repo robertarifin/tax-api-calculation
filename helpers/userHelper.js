@@ -1,3 +1,9 @@
+/**
+ * Helper functions for integration testing to create an delete user
+ * 
+ * @author Robert Arifin <arifinrobert2013@gmail.com>
+ */
+
 const { User } = require('../models/index.js');
 
 module.exports = {
