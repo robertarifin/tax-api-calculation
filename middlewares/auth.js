@@ -16,39 +16,33 @@ module.exports = {
    * @param {*} next 
    */
   isLogin(req, res, next) {
-    if (req.headers.authorization) {
-      if (req.headers.authorization.includes('Bearer ')) {
-        let decodedData = jwt.verifyToken(req.headers.authorization.substr(7));
-        User.findOne({
-          where: {
-            email: decodedData.email
+    if (req.headers.authorization.includes('Bearer ')) {
+      let decodedData = jwt.verifyToken(req.headers.authorization.substr(7));
+      User.findOne({
+        where: {
+          email: decodedData.email
+        }
+      })
+        .then((data) => {
+          if (data) {
+            req.user = decodedData
+            next()
+          } else {
+            res.status(400).json({
+              info: 'User does not exist anymore'
+            })
           }
         })
-          .then((data) => {
-            if (data) {
-              req.user = decodedData
-              next()
-            } else {
-              res.status(400).json({
-                info: 'User does not exist anymore'
-              })
-            }
+        .catch((err) => {
+          res.status(500).json({
+            info: 'Please try again later!'
           })
-          .catch((err) => {
-            res.status(500).json({
-              info: 'Please try again later!'
-            })
-          })
-      } else {
-        res.status(404).json({
-          info: 'Failed to login',
-          err: "Token doesn't have Bearer"
         })
-      }
     } else {
+      console.l
       res.status(404).json({
         info: 'Failed to login',
-        err: "Token doesn't exist"
+        err: "Invalid token"
       })
     }
   } 
