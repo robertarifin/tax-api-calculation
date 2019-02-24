@@ -1,0 +1,11 @@
+version: '3.6'
+services:
+  server:
+    build: 
+        context: .
+        dockerfile: DockerFile
+    container_name: 'tax-api'
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.: /usr/src/tax-api'
