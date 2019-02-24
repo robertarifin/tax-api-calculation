@@ -1,5 +1,12 @@
 version: '3.6'
 services:
+  db:
+    image: 'postgres:11'
+    container_name: 'tax_postgres'
+    ports:
+      - '54320:5432'
+    volumes:
+      - .:/var/lib/postgresql/data
   server:
     build: 
         context: .
@@ -8,4 +15,4 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - '.: /usr/src/tax-api'
+      - .:/usr/app

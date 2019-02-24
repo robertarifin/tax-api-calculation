@@ -1,15 +1,23 @@
 FROM node:10-alpine
 
-RUN mkdir -p /usr/src/tax-api
-WORKDIR /usr/srctax-api
+WORKDIR /usr/app
+RUN rm -rf node_modules
+RUN npm update
 RUN npm install  -g nodemon
 RUN npm install -g node-gyp
-COPY package.json /usr/src/tax-api/package.json
+RUN npm install -g sequelize-cli
+COPY package.json /usr/app/package.json
 RUN apk add --update \
     python \
     python-dev \
     py-pip \
     build-base \
+    krb5  \
+    krb5-libs \ 
+    gcc \ 
+    make \ 
+    g++ \ 
+    krb5-dev \
   && pip install virtualenv \
   && rm -rf /var/cache/apk/*
 
